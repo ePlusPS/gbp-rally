@@ -1,7 +1,7 @@
 from rally.task.scenarios import base
 
 
-class ScenarioPlugin(base.Scenario):
+class CustomScenarioPlugin(base.Scenario):
     """Sample plugin which lists flavors."""
 
     @base.atomic_action_timer("list_flavors")
