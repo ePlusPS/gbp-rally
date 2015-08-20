@@ -1,28 +1,15 @@
 from rally.benchmark.scenarios import base
 from rally.benchmark import utils as bench_utils
-from rally.benchmark import validation
-from rally import osclients
+from rally.plugins.openstack.scenarios.custom import utils as customutils
 
 
-class CustomScenarioPlugin(base.Scenario):
-    """Sample plugin which lists flavors."""
+class CustomKeystone(customutils.CustomKeystoneScenario):
+    """Test plugin for creating and listing tenants"""
 
-    @base.atomic_action_timer("list_flavors")
-    def _list_flavors(self):
-        """Sample of usage clients - list flavors
+    @base.scenario(context={})
+    def create_tenant(self, name_length=10, **kwargs):
+        tenant = self._tenant_create(name_length=name_length, **kwargs)
 
-        You can use self.context, self.admin_clients and self.clients which are
-        initialized on scenario instance creation.
-        """
-        self.clients("nova").flavors.list()
-
-    @base.atomic_action_timer("list_flavors_as_admin")
-    def _list_flavors_as_admin(self):
-        """The same with admin clients."""
-        self.admin_clients("nova").flavors.list()
-
-    @base.scenario()
-    def list_flavors(self):
-        """List flavors."""
-        self._list_flavors()
-        self._list_flavors_as_admin()
+    @base.scenario(context={})
+    def list_tenants(self):
+        self._list_tenants()
