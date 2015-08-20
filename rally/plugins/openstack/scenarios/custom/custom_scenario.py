@@ -1,4 +1,7 @@
-from rally.task.scenarios import base
+from rally.benchmark.scenarios import base
+from rally.benchmark import utils as bench_utils
+from rally.benchmark import validation
+from rally import osclients
 
 
 class CustomScenarioPlugin(base.Scenario):
