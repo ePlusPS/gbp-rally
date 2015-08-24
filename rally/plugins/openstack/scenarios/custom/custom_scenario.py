@@ -1,5 +1,5 @@
 from rally.plugins.openstack import scenario
-from rally.plugins.openstack.scenarios.keystone import custom_utils as csutils
+from rally.plugins.openstack.scenarios.custom import custom_utils as csutils
 
 
 
