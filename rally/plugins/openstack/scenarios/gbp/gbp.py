@@ -9,12 +9,12 @@ from rally.task import validation
 class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
     """Benchmark scenarios for Group Based Policy"""
     
-    @scenario.configure(context={"cleanup":["grouppolicy"]})
+    @scenario.configure(context={})
     def create_policy_action(self, action_type="allow"):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name, type=action_type)
         
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_update_policy_action(self, action_type="allow"):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name, type=action_type)
@@ -22,20 +22,20 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         action_name1 = rutils.generate_random_name(prefix="rally_action_allow_")
         self._update_policy_action(name=action_name, new_name=action_name1)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_show_policy_action(self, action_type="allow"):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name, type=action_type)
         self._show_policy_action(action_name, action_type)
     
         
-    @scenario.configure()
+    @scenario.configure(context={})
     def create_and_delete_policy_action(self, action_type="allow"):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name, type=action_type)
         self._delete_policy_action(name=action_name)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_policy_classifier(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -44,7 +44,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
                                       classifier_args['direction'])
     
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_show_policy_classifier(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -54,7 +54,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._show_policy_classifier(classifier_name, classifier_args['protocol'],
                                      classifier_args['port_range'], classifier_args['direction'])
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_update_policy_classifier(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -66,7 +66,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
                                        "tcp", "5001", "in")
     
 
-    @scenario.configure()
+    @scenario.configure(context={})
     def create_and_delete_policy_classifier(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -76,7 +76,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._delete_policy_classifier(classifier_name)
         self._delete_policy_action(name=action_name)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_policy_rule(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -88,7 +88,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         rule_name = rutils.generate_random_name(prefix="rally_rule_web_policy_")
         self._create_policy_rule(rule_name, classifier_name, action_name)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_show_policy_rule(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -101,7 +101,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._create_policy_rule(rule_name, classifier_name, action_name)
         self._show_policy_rule(rule_name)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_update_policy_rule(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -123,7 +123,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
 
     
     
-    @scenario.configure()
+    @scenario.configure(context={})
     def create_and_delete_policy_rule(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -138,7 +138,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._delete_policy_classifier(classifier_name)
         self._delete_policy_action(name=action_name)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_policy_rule_set(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -153,7 +153,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         ruleset_name = rutils.generate_random_name(prefix="rally_ruleset_web_")
         self._create_policy_rule_set(ruleset_name, [rule_name])
 
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_show_policy_rule_set(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -169,7 +169,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._create_policy_rule_set(ruleset_name, [rule_name])
         self._show_policy_rule_set(ruleset_name)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_update_policy_rule_set(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -190,7 +190,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._update_policy_rule_set(ruleset_name, [rule_name, rule_name1])
     
 
-    @scenario.configure()
+    @scenario.configure(context={})
     def create_and_delete_policy_rule_set(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -209,7 +209,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._delete_policy_classifier(classifier_name)
         self._delete_policy_action(name=action_name)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_policy_target_group(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -227,7 +227,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         pt_group_name = rutils.generate_random_name(prefix="rally_group_")
         self._create_policy_target_group(pt_group_name)
         
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_show_policy_target_group(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -247,7 +247,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._show_policy_target_group(pt_group_name)
     
     
-    @scenario.configure()
+    @scenario.configure(context={})
     def create_and_delete_policy_target_group(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -270,7 +270,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._delete_policy_classifier(classifier_name)
         self._delete_policy_action(name=action_name)
     
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_update_policy_target_group(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -290,7 +290,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._update_policy_target_group(pt_group_name, provided_policy_rulesets=[ruleset_name])
 
 
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_policy_target(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -313,7 +313,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         pt_name = rutils.generate_random_name(prefix="rally_target_web1")
         self._create_policy_target(pt_name,pt_group_name)
 
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_show_policy_target(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -338,7 +338,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         self._show_policy_target(pt_name)
 
 
-    @scenario.configure(context={"cleanup": ["grouppolicy"]})
+    @scenario.configure(context={})
     def create_and_update_policy_target(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -363,7 +363,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
         pt_name2 = rutils.generate_random_name(prefix="rally_target_web2")
         self._update_policy_target(pt_name, pt_name2)
     
-    @scenario.configure()
+    @scenario.configure(context={})
     def create_and_delete_policy_target(self, classifier_args={}):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -396,7 +396,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
     
     @types.set(image=types.ImageResourceType, flavor=types.FlavorResourceType)
     @validation.image_valid_on_flavor("flavor", "image")
-    @scenario.configure(context={"cleanup":["nova","grouppolicy"]})
+    @scenario.configure(context={})
     def boot_vm(self, image, flavor, classifier_args= {}, **kwargs):
         action_name = rutils.generate_random_name(prefix="rally_action_allow_")
         self._create_policy_action(name=action_name)
@@ -425,7 +425,7 @@ class GBPTests(nova_utils.NovaScenario, utils.GBPScenario):
     
     @types.set(image=types.ImageResourceType, flavor=types.FlavorResourceType)
     @validation.image_valid_on_flavor("flavor", "image")
-    @scenario.configure(context={"cleanup": ["nova", "grouppolicy"]})
+    @scenario.configure(context={})
     def ping_and_ssh_group(self, image, flavor, **kwargs):
         """
         Scenario that has
