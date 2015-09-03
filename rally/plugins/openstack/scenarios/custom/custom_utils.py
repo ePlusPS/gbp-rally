@@ -2,7 +2,7 @@ from rally.plugins.openstack import scenario
 from rally.task import atomic
 import uuid
 
-class CustomKeystoneScenario(scenario.OpenstackScenario):
+class CustomKeystoneScenario(scenario.OpenStackScenario):
     """ Base Class for CustomKeystone scenarios with basic atomic action """
     RESOURCE_NAME_PREFIX = "rally_keystone_"
     
